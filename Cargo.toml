@@ -6,6 +6,10 @@ authors = ["meh. <meh@schizofreni.co>"]
 license = "WTFPL"
 build   = "build.rs"
 
+description = "Bindings to libxkbcommon"
+repository  = "https://github.com/meh/rust-xkbcommon-sys"
+keywords    = ["xkb", "xkbcommon", "x11", "xcb"]
+
 [build-dependencies]
 pkg-config = "0.3"
 
