@@ -1,0 +1,17 @@
+[package]
+name    = "xkbcommon-sys"
+version = "0.7.0"
+
+authors = ["meh. <meh@schizofreni.co>"]
+license = "WTFPL"
+build   = "build.rs"
+
+[build-dependencies]
+pkg-config = "0.3"
+
+[dependencies]
+libc = "0.2"
+
+[features]
+static = []
+x11    = []
