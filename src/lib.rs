@@ -182,7 +182,7 @@ extern "C" {
 	pub fn xkb_keymap_mod_get_index(keymap: *mut xkb_keymap, name: *const c_char) -> xkb_mod_index_t;
 	pub fn xkb_keymap_num_layouts(keymap: *mut xkb_keymap) -> xkb_layout_index_t;
 	pub fn xkb_keymap_layout_get_name(keymap: *mut xkb_keymap, idx: xkb_layout_index_t) -> *const c_char;
-	pub fn xkb_keymap_layout_get_index(keymap: *mut xkb_keymap, name: *const c_char) -> *const c_char;
+	pub fn xkb_keymap_layout_get_index(keymap: *mut xkb_keymap, name: *const c_char) -> xkb_layout_index_t;
 	pub fn xkb_keymap_num_leds(keymap: *mut xkb_keymap) -> xkb_led_index_t;
 	pub fn xkb_keymap_led_get_name(keymap: *mut xkb_keymap, idx: xkb_led_index_t) -> *const c_char;
 	pub fn xkb_keymap_led_get_index(keymap: *mut xkb_keymap, name: *const c_char) -> xkb_led_index_t;
