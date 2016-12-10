@@ -1,6 +1,6 @@
 [package]
 name    = "xkbcommon-sys"
-version = "0.7.1"
+version = "0.7.2"
 
 authors = ["meh. <meh@schizofreni.co>"]
 license = "WTFPL"
