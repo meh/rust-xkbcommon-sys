@@ -22,4 +22,3 @@ pub const XKB_MOD_NAME_LOGO:  &'static [u8] = b"Mod4\0";
 pub const XKB_LED_NAME_CAPS:   &'static [u8] = b"Caps Lock\0";
 pub const XKB_LED_NAME_NUM:    &'static [u8] = b"Num Lock\0";
 pub const XKB_LED_NAME_SCROLL: &'static [u8] = b"Scroll Lock\0";
-

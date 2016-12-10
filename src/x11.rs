@@ -15,6 +15,9 @@
 use libc::{c_void, c_int, uint8_t, uint16_t, int32_t};
 use ::{xkb_context, xkb_keymap, xkb_state, xkb_keymap_compile_flags};
 
+pub const XKB_X11_MIN_MAJOR_XKB_VERSION: c_int = 1;
+pub const XKB_X11_MIN_MINOR_XKB_VERSION: c_int = 0;
+
 pub type xkb_x11_setup_xkb_extension_flags = c_int;
 pub const XKB_X11_SETUP_XKB_EXTENSION_NO_FLAGS: xkb_x11_setup_xkb_extension_flags = 0;
 
