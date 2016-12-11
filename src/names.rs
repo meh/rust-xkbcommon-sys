@@ -12,13 +12,15 @@
 //
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 
-pub const XKB_MOD_NAME_SHIFT: &'static [u8] = b"Shift\0";
-pub const XKB_MOD_NAME_CAPS:  &'static [u8] = b"Lock\0";
-pub const XKB_MOD_NAME_CTRL:  &'static [u8] = b"Control\0";
-pub const XKB_MOD_NAME_ALT:   &'static [u8] = b"Mod1\0";
-pub const XKB_MOD_NAME_NUM:   &'static [u8] = b"Mod2\0";
-pub const XKB_MOD_NAME_LOGO:  &'static [u8] = b"Mod4\0";
+use libc::c_char;
 
-pub const XKB_LED_NAME_CAPS:   &'static [u8] = b"Caps Lock\0";
-pub const XKB_LED_NAME_NUM:    &'static [u8] = b"Num Lock\0";
-pub const XKB_LED_NAME_SCROLL: &'static [u8] = b"Scroll Lock\0";
+pub const XKB_MOD_NAME_SHIFT: *const c_char = b"Shift\0" as *const _ as *const c_char;
+pub const XKB_MOD_NAME_CAPS:  *const c_char = b"Lock\0" as *const _ as *const c_char;
+pub const XKB_MOD_NAME_CTRL:  *const c_char = b"Control\0" as *const _ as *const c_char;
+pub const XKB_MOD_NAME_ALT:   *const c_char = b"Mod1\0" as *const _ as *const c_char;
+pub const XKB_MOD_NAME_NUM:   *const c_char = b"Mod2\0" as *const _ as *const c_char;
+pub const XKB_MOD_NAME_LOGO:  *const c_char = b"Mod4\0" as *const _ as *const c_char;
+
+pub const XKB_LED_NAME_CAPS:   *const c_char = b"Caps Lock\0" as *const _ as *const c_char;
+pub const XKB_LED_NAME_NUM:    *const c_char = b"Num Lock\0" as *const _ as *const c_char;
+pub const XKB_LED_NAME_SCROLL: *const c_char = b"Scroll Lock\0" as *const _ as *const c_char;
