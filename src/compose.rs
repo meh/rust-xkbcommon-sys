@@ -44,10 +44,8 @@ pub use self::xkb_compose_status::*;
 #[repr(C)]
 #[derive(Eq, PartialEq, Copy, Clone, Debug)]
 pub enum xkb_compose_feed_result {
-	XKB_COMPOSE_NOTHING,
-	XKB_COMPOSE_COMPOSING,
-	XKB_COMPOSE_COMPOSED,
-	XKB_COMPOSE_CANCELLED
+	XKB_COMPOSE_FEED_IGNORED,
+	XKB_COMPOSE_FEED_ACCEPTED,
 }
 pub use self::xkb_compose_feed_result::*;
 
