@@ -12,7 +12,7 @@
 //
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 
-use xkb_keysym_t;
+use crate::xkb_keysym_t;
 
 pub const XKB_KEY_NoSymbol: xkb_keysym_t = 0x000000;
 pub const XKB_KEY_VoidSymbol: xkb_keysym_t = 0xffffff;

@@ -15,7 +15,7 @@
 #![allow(non_camel_case_types, non_upper_case_globals)]
 
 extern crate libc;
-use libc::{c_void, c_char, c_int, c_uint, size_t, uint32_t};
+use libc::{c_void, c_char, c_int, c_uint, size_t};
 use libc::FILE;
 
 mod keysyms;
@@ -36,26 +36,26 @@ pub type xkb_context = c_void;
 pub type xkb_keymap = c_void;
 pub type xkb_state = c_void;
 
-pub type xkb_keycode_t = uint32_t;
-pub type xkb_keysym_t = uint32_t;
+pub type xkb_keycode_t = u32;
+pub type xkb_keysym_t = u32;
 
-pub type xkb_layout_index_t = uint32_t;
-pub type xkb_layout_mask_t = uint32_t;
+pub type xkb_layout_index_t = u32;
+pub type xkb_layout_mask_t = u32;
 
-pub type xkb_level_index_t = uint32_t;
+pub type xkb_level_index_t = u32;
 
-pub type xkb_mod_index_t = uint32_t;
-pub type xkb_mod_mask_t = uint32_t;
+pub type xkb_mod_index_t = u32;
+pub type xkb_mod_mask_t = u32;
 
-pub type xkb_led_index_t = uint32_t;
-pub type xkb_led_mask_t = uint32_t;
+pub type xkb_led_index_t = u32;
+pub type xkb_led_mask_t = u32;
 
-pub const XKB_KEYCODE_INVALID: uint32_t = 0xffffffff;
-pub const XKB_LAYOUT_INVALID:  uint32_t = 0xffffffff;
-pub const XKB_LEVEL_INVALID:   uint32_t = 0xffffffff;
-pub const XKB_MOD_INVALID:     uint32_t = 0xffffffff;
-pub const XKB_LED_INVALID:     uint32_t = 0xffffffff;
-pub const XKB_KEYCODE_MAX:     uint32_t = 0xffffffff - 1;
+pub const XKB_KEYCODE_INVALID: u32 = 0xffffffff;
+pub const XKB_LAYOUT_INVALID:  u32 = 0xffffffff;
+pub const XKB_LEVEL_INVALID:   u32 = 0xffffffff;
+pub const XKB_MOD_INVALID:     u32 = 0xffffffff;
+pub const XKB_LED_INVALID:     u32 = 0xffffffff;
+pub const XKB_KEYCODE_MAX:     u32 = 0xffffffff - 1;
 
 #[inline(always)]
 pub unsafe fn xkb_keycode_is_legal_ext(key: xkb_keycode_t) -> bool {
@@ -93,9 +93,9 @@ pub const XKB_KEYMAP_COMPILE_NO_FLAGS: xkb_keymap_compile_flags = 0;
 #[derive(Eq, PartialEq, Copy, Clone, Debug)]
 pub enum xkb_keymap_format {
 	XKB_KEYMAP_USE_ORIGINAL_FORMAT = -1,
-	XKB_KEYMAP_FORMAT_TEXT_v1      = 1,
+	XKB_KEYMAP_FORMAT_TEXT_V1      = 1,
 }
-pub use xkb_keymap_format::*;
+pub use crate::xkb_keymap_format::*;
 
 #[repr(C)]
 #[derive(Eq, PartialEq, Copy, Clone, Debug)]
@@ -106,7 +106,7 @@ pub enum xkb_log_level {
 	XKB_LOG_LEVEL_INFO     = 40,
 	XKB_LOG_LEVEL_DEBUG    = 50,
 }
-pub use xkb_log_level::*;
+pub use crate::xkb_log_level::*;
 
 pub type xkb_keymap_key_iter_t = extern "C" fn(*mut xkb_keymap, key: xkb_keycode_t, data: *mut c_void);
 
@@ -116,7 +116,7 @@ pub enum xkb_key_direction {
 	XKB_KEY_UP,
 	XKB_KEY_DOWN,
 }
-pub use xkb_key_direction::*;
+pub use crate::xkb_key_direction::*;
 
 pub type xkb_state_component = c_int;
 pub const XKB_STATE_MODS_DEPRESSED:   xkb_state_component = 1 << 0;
@@ -140,13 +140,13 @@ pub enum xkb_consumed_mode {
 	XKB_CONSUMED_MODE_XKB,
 	XKB_CONSUMED_MODE_GTK,
 }
-pub use xkb_consumed_mode::*;
+pub use crate::xkb_consumed_mode::*;
 
 extern "C" {
 	pub fn xkb_keysym_get_name(keysym: xkb_keysym_t, buffer: *mut c_char, size: size_t) -> c_int;
 	pub fn xkb_keysym_from_name(name: *const c_char, flags: xkb_keysym_flags) -> xkb_keysym_t;
 	pub fn xkb_keysym_to_utf8(keysym: xkb_keysym_t, buffer: *mut c_char, size: size_t) -> c_int;
-	pub fn xkb_keysym_to_utf32(keysym: xkb_keysym_t) -> uint32_t;
+	pub fn xkb_keysym_to_utf32(keysym: xkb_keysym_t) -> u32;
 
 	pub fn xkb_context_new(flags: xkb_context_flags) -> *mut xkb_context;
 	pub fn xkb_context_ref(context: *mut xkb_context) -> *mut xkb_context;
@@ -199,7 +199,7 @@ extern "C" {
 	pub fn xkb_state_update_mask(state: *mut xkb_state, depressed_mods: xkb_mod_mask_t, latched_mods: xkb_mod_mask_t, locked_mods: xkb_mod_mask_t, depressed_layout: xkb_layout_index_t, latched_layout: xkb_layout_index_t, locked_layout: xkb_layout_index_t) -> xkb_state_component;
 	pub fn xkb_state_key_get_syms(state: *mut xkb_state, key: xkb_keycode_t, syms_out: *mut *mut xkb_keysym_t) -> c_int;
 	pub fn xkb_state_key_get_utf8(state: *mut xkb_state, key: xkb_keycode_t, buffer: *mut c_char, size: size_t) -> c_int;
-	pub fn xkb_state_key_get_utf32(state: *mut xkb_state, key: xkb_keycode_t) -> uint32_t;
+	pub fn xkb_state_key_get_utf32(state: *mut xkb_state, key: xkb_keycode_t) -> u32;
 	pub fn xkb_state_key_get_one_sym(state: *mut xkb_state, key: xkb_keycode_t) -> xkb_keysym_t;
 	pub fn xkb_state_key_get_layout(state: *mut xkb_state, key: xkb_keycode_t) -> xkb_layout_index_t;
 	pub fn xkb_state_key_get_level(state: *mut xkb_state, key: xkb_keycode_t, layout: xkb_layout_index_t) -> xkb_level_index_t;

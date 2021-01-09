@@ -13,7 +13,7 @@
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 
 use libc::{c_void, c_char, c_int, size_t, FILE};
-use ::{xkb_context, xkb_keysym_t};
+use crate::{xkb_context, xkb_keysym_t};
 
 pub type xkb_compose_table = c_void;
 pub type xkb_compose_state = c_void;

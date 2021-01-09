@@ -16,7 +16,7 @@ fn common() -> Result<(), Error> {
 		println!("cargo:rustc-link-search=native={}", path);
 	}
 	else {
-		try!(Config::new().statik(is_static()).probe("xkbcommon"));
+		Config::new().statik(is_static()).probe("xkbcommon")?;
 	}
 
 	Ok(())
@@ -32,7 +32,7 @@ fn x11() -> Result<(), Error> {
 			println!("cargo:rustc-link-search=native={}", path);
 		}
 		else {
-			try!(Config::new().statik(is_static()).probe("xkbcommon-x11"));
+			Config::new().statik(is_static()).probe("xkbcommon-x11")?;
 		}
 	}
 
