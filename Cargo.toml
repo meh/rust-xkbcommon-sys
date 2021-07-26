@@ -12,7 +12,7 @@ repository  = "https://github.com/meh/rust-xkbcommon-sys"
 keywords    = ["xkb", "xkbcommon", "x11", "xcb"]
 
 [build-dependencies]
-bindgen = "0.56"
+bindgen = "0.59"
 pkg-config = "0.3"
 
 [dependencies]
