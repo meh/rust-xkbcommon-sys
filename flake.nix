@@ -17,7 +17,7 @@
       buildInputs = with pkgs; with llvmPackages; with python37Packages; [
         # For building.
         clang rust.latest.toolchain pkg-config openssl libsodium libclang.lib
-        libxkbcommon
+        libxkbcommon xorg.libxcb
       ];
 
       LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";

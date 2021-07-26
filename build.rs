@@ -1,10 +1,38 @@
-use std::env;
-
-extern crate pkg_config;
+use std::{env, path::PathBuf};
 use pkg_config::{Config, Error};
+
+fn main() {
+	common().unwrap();
+	x11().unwrap();
+
+	let mut builder = bindgen::Builder::default()
+		.rustified_enum("*")
+		.prepend_enum_name(false)
+		.derive_eq(true)
+		.size_t_is_usize(true);
+
+	builder = builder
+		.header("src/wrapper.h");
+
+	if env::var("CARGO_FEATURE_X11").is_ok() {
+		builder = builder.header("src/wrapper-x11.h");
+	}
+
+  // Finish the builder and generate the bindings.
+  builder
+		.generate()
+		// Unwrap the Result and panic on failure.
+		.expect("Unable to generate bindings")
+		.write_to_file(output().join("bindings.rs"))
+		.unwrap();
+}
 
 fn is_static() -> bool {
 	env::var("CARGO_FEATURE_STATIC").is_ok()
+}
+
+fn output() -> PathBuf {
+	PathBuf::from(env::var("OUT_DIR").unwrap())
 }
 
 fn common() -> Result<(), Error> {
@@ -37,9 +65,4 @@ fn x11() -> Result<(), Error> {
 	}
 
 	Ok(())
-}
-
-fn main() {
-	common().unwrap();
-	x11().unwrap();
 }
